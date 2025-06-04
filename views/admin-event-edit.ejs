@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="datetime-local"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .image-preview {
+            max-width: 300px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            margin-right: 10px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .image-options {
+            margin-top: 10px;
+        }
+        .image-options label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Event</h1>
+        <form action="/admin/events/<%= event.id %>" method="POST">
+            <div class="form-group">
+                <label for="title">Event Title</label>
+                <input type="text" id="title" name="title" value="<%= event.title %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <textarea id="description" name="description" required><%= event.description %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="event_date">Event Date and Time</label>
+                <input type="datetime-local" id="event_date" name="event_date" 
+                       value="<%= new Date(event.event_date).toISOString().slice(0, 16) %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Event Image</label>
+                <div class="image-options">
+                    <label>
+                        <input type="radio" name="image_type" value="event1" 
+                               <%= event.image_url === 'event1.jpg' ? 'checked' : '' %>>
+                        Event 1
+                        <img src="/image/event1.jpg" alt="Event 1" class="image-preview">
+                    </label>
+                    <label>
+                        <input type="radio" name="image_type" value="event2" 
+                               <%= event.image_url === 'event2.jpg' ? 'checked' : '' %>>
+                        Event 2
+                        <img src="/image/event2.jpg" alt="Event 2" class="image-preview">
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/admin/events" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update Event</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

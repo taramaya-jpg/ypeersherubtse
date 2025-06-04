@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Y-Peer Network - Login</title>
+  <link rel="stylesheet" href="/css/login.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Login</h2>
+      <% if (typeof message !== 'undefined' && message) { %>
+        <p class="message"><%= message %></p>
+      <% } %>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+      <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="Enter your email" required autofocus />
+        <input type="password" name="password" placeholder="Enter your password" required />
+        
+        <p><a href="/forgot-password">Forgot password?</a></p>
+
+        <div class="role-selection">
+          <label>Login as:</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="role" value="user" required checked />
+              <span>User</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="role" value="admin" required />
+              <span>Admin</span>
+            </label>
+          </div>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p class="signup-link">Not a member? <a href="/signup">Sign up here</a></p>
+    </div>
+  </div>
+</body>
+</html>

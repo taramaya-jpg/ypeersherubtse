@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Members - Y-Peer Network</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/script.js" defer></script>
+    <style>
+        .table-container {
+            background: rgb(203, 229, 231);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            margin: 20px;
+        }
+        @media (max-width: 768px) {
+            .table-container {
+                margin: 10px;
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px 10px;
+            }
+            .verification-status {
+                padding: 3px 6px;
+                font-size: 0.8em;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #171717;
+        }
+        th {
+            background-color: #9bc9d2;
+            font-weight: 600;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #e6ebef;
+        }
+        .verification-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .verified {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .unverified {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .date-cell {
+            white-space: nowrap;
+            color: #666;
+        }
+        .btn-approve, .btn-reject {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0 4px;
+            transition: background-color 0.3s;
+        }
+        .btn-approve {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-approve:hover {
+            background-color: #218838;
+        }
+        .btn-reject {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-reject:hover {
+            background-color: #c82333;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="/css/logo.jpeg" alt="Logo" class="logo" />
+            <h1>Sherubtse Y-Peer Network</h1>
+        </div>
+
+        <!-- Hamburger icon -->
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+        <nav class="navbar" id="navbar">
+            <a href="/admin/dashboard" class="nav-link">Dashboard</a>
+            <a href="/admin/members" class="nav-link active">Members</a>
+            <a href="/admin/events" class="nav-link">Events</a>
+            <a href="/landing" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Year</th>
+                            <th>Course</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                            <th>Registration Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (users && users.length > 0) { %>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td><%= user.first_name + ' ' + user.last_name %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.phone %></td>
+                                    <td><%= user.year %></td>
+                                    <td><%= user.course %></td>
+                                    <td><%= user.gender %></td>
+                                    <td>
+                                        <span class="verification-status <%= user.is_verified ? 'verified' : 'unverified' %>">
+                                            <%= user.is_verified ? 'Verified' : 'Unverified' %>
+                                            <% if (user.is_verified) { %>
+                                                <i class="fas fa-check-circle" style="color: #28a745; margin-left: 5px;"></i>
+                                            <% } %>
+                                        </span>
+                                    </td>
+                                    <td class="date-cell"><%= new Date(user.created_at).toLocaleDateString() %></td>
+                                    
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="8" style="text-align: center;">No members found</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('navbar').classList.toggle('active');
+        });
+    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Sherubtse College, Royal University of Bhutan, Kanglung, Tashigang, Bhutan</p>
+        <p>&copy; 2025 Sherubtse Y-PEER Network | All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('navbar').classList.toggle('active');
+        });
+
+        async function approveMember(userId) {
+            try {
+                const response = await fetch('/admin/members/update-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId: userId, action: 'approve' })
+                });
+                if (response.ok) {
+                    alert('Member approved successfully');
+                    location.reload();
+                } else {
+                    alert('Failed to approve member');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred');
+            }
+        }
+
+        async function rejectMember(userId) {
+            try {
+                const response = await fetch('/admin/members/update-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ userId: userId, action: 'reject' })
+                });
+                if (response.ok) {
+                    alert('Member rejected successfully');
+                    location.reload();
+                } else {
+                    alert('Failed to reject member');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred');
+            }
+        }
+    </script>
+</body>
+</html>

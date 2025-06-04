@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Y-PEER Network | Signup</title>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+  <div class="signup-container">
+    <h1 class="page-title">Sign Up</h1>
+  <form action="/signup" method="POST">
+    <h2>Member Registration</h2>
+
+    <% if (message) { %>
+      <p><%= message %></p>
+    <% } %>
+
+    <input type="text" name="first_name" placeholder="First Name" required />
+
+    <input type="text" name="last_name" placeholder="Last Name" required />
+
+    <input type="email" name="email" placeholder="Email" required />
+
+    <div class="phone-input">
+      <span class="country-code">+975</span>
+      <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{8}" required />
+    </div>
+
+    <select name="year" required>
+      <option value="" disabled selected>Select Year</option>
+      <option value="1st">1st Year</option>
+      <option value="2nd">2nd Year</option>
+      <option value="3rd">3rd Year</option>
+      <option value="4th">4th Year</option>
+    </select>
+
+    <select name="course" required>
+      <option value="" disabled selected>Select Course</option>
+      <option value="DSDA">DSDA</option>
+      <option value="DCPM">DCPM</option>
+      <option value="EPS">EPS</option>
+      <option value="BSc.Physics">BSc. Physics</option>
+      <option value="BSc.Math">BSc. Math</option>
+      <option value="BSc.Statistics">BSc. Statistics</option>
+    </select>
+
+    <select name="gender" required>
+      <option value="" disabled selected>Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input type="password" name="password" placeholder="Password" required />
+
+    <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+
+
+    <button type="submit">Register</button>
+    <p>Already have an account? <a href="/login">Login here</a>.</p>
+  </form>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Y-Peer Network - Team</title>
+  <link rel="stylesheet" href="/css/landing.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="/css/logo.jpeg" alt="Logo" class="logo" />
+      <h1>Sherubtse Y-Peer Network</h1>
+    </div>
+
+    <!-- Hamburger icon -->
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+
+    <nav class="navbar" id="navbar">
+      <a href="/signup" class="nav-link">Sign up</a>
+      <a href="/login" class="nav-link">Login</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="team-grid">
+      <!-- Coordinator -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/coordinator.jpg" alt="Coordinator" />
+        </div>
+      </div>
+
+      <!-- Vice Coordinator -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/vice-coordinator.jpg" alt="Vice Coordinator" />
+        </div>
+      </div>
+
+      <!-- Secretary -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/secretary.jpg" alt="Secretary" />
+        </div>
+      </div>
+
+      <!-- Treasurer -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/treasurer.jpg" alt="Treasurer" />
+        </div>
+      </div>
+
+      <!-- Creative Team Members -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/creative1.jpg" alt="Creative Team 1" />
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/creative2.jpg" alt="Creative Team 2" />
+        </div>
+      </div>
+
+      <!-- Social Media Focal Members -->
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/creative4.jpg" alt="Social Media Focal 1" />
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/creative5.jpg" alt="Social Media Focal 2" />
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="member-image">
+          <img src="/image/creative3.jpg" alt="Social Media Focal 3" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Sherubtse College, Royal University of Bhutan, Kanglung, Tashigang, Bhutan</p>
+    <p>&copy; 2025 Sherubtse Y-PEER Network | All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Hamburger menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navbar = document.getElementById('navbar');
+      
+      menuToggle.addEventListener('click', function() {
+        navbar.classList.toggle('active');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!menuToggle.contains(event.target) && !navbar.contains(event.target)) {
+          navbar.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

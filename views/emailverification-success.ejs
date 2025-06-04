@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification Success - Y-PEER Sherubtse</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 2rem;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 48px;
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+        .success-message {
+            color: #2ecc71;
+            font-size: 24px;
+            margin-bottom: 1rem;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .login-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .login-button:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            margin-top: 2rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <div class="success-message">Email Verified Successfully!</div>
+        <p class="description">Your email has been verified. You can now log in to your account and access all features of Y-PEER Sherubtse.</p>
+        <a href="<%= process.env.BASE_URL %>/login" class="login-button" style="display: inline-block; padding: 12px 24px; background-color: #3498db; color: #ffffff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease;">Log In to Your Account</a>
+        <div class="footer">
+            <p>&copy; <%= new Date().getFullYear() %> Y-PEER Sherubtse. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
