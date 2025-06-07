@@ -29,15 +29,12 @@ exports.getLogin = (req, res) => {
 
 // Handle login
 exports.postLogin = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password } = req.body;
 
   try {
-    if (role === 'admin') {
-      const admin = await getAdminByEmail(email);
-      if (!admin || !(await bcrypt.compare(password, admin.password))) {
-        return res.render('login', { error: 'Invalid admin credentials' });
-      }
-
+    // First check if it's an admin
+    const admin = await getAdminByEmail(email);
+    if (admin && (await bcrypt.compare(password, admin.password))) {
       const token = jwt.sign(
         { userId: admin.id, role: 'admin', email: admin.email },
         process.env.JWT_SECRET,

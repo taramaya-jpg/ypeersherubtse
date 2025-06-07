@@ -62,6 +62,29 @@ body {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1a2f45;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .header {
+    flex-wrap: wrap;
+  }
+}
+
 /* Main */
 .main-content {
   padding: 30px;
